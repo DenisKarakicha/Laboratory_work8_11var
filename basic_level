@@ -1,0 +1,53 @@
+// Laba8-basic.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+//
+
+
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cmath>
+using namespace std;
+
+struct stek
+{
+    int number;
+    stek* next;
+
+};
+
+
+int main()
+{
+    setlocale(0, "ru");
+    int count = 0 , numbers , average = 0;
+    stek* top = NULL, *p;
+    cout << "Введите количество цифр: ";
+    cin >> numbers;
+    do
+    {
+        p = (stek*)malloc(sizeof(stek));
+        p->next = top;
+        p->number = (rand()%9 + 1);
+        top = p;
+        count++;
+
+    } while (count < numbers);
+    count = 0;
+    int i = 0;
+    cout << "Изначальный список: ";
+    do
+    {
+        if (count > 4 && top != NULL)
+        {
+            average = average + top->number;
+            i++;
+        }
+        cout << top->number << "  ";
+        top = top->next;
+        count++;
+    } while (top != NULL);
+    cout << "Среднее арифметическое значение елементов начиная с 5: "<<((average == 0) ? average : ((float)average / i));
+    
+}
+
+
